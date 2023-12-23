@@ -4,8 +4,12 @@ import itemTypes from './Card'
 import Swal from 'sweetalert2';
 import { FaCalendar, FaEdit, FaRegCircle } from 'react-icons/fa';
 import { MdDelete } from "react-icons/md";
+import useAxios from './hooks/useAxios';
+import useTasks from './hooks/useTasks';
 
 const Tasks = ({ todo }) => {
+  const axiosPublic = useAxios()
+  const [,refetch] = useTasks()
   const { title, description, deadLine, priority, status } = todo
   const [{ isDragging }, drag] = useDrag({
     type: itemTypes.CARD,
@@ -21,6 +25,33 @@ const Tasks = ({ todo }) => {
       handlerId: monitor.getHandlerId(),
     }),
   })
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        await axiosPublic.delete(`/todo/${todo._id}`)
+        .then(res =>{
+          console.log(res.data)
+          if(res.data.deletedCount){
+
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+            refetch()
+          }
+        })
+      }
+    });
+  }
   const opacity = isDragging ? 0.4 : 1;
   return (
 
@@ -39,13 +70,13 @@ const Tasks = ({ todo }) => {
       </div>
       <div>
         <div className='flex gap-4 text-xl'>
-<button>
-        <FaEdit></FaEdit>
-  </button>
-  <button>
+          <button>
+            <FaEdit></FaEdit>
+          </button>
+          <button onClick={handleDelete}>
 
-        <MdDelete></MdDelete>
-  </button>
+            <MdDelete></MdDelete>
+          </button>
         </div>
 
       </div>
