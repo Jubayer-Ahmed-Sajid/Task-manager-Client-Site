@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useDrag } from 'react-dnd'
-import itemTypes from './hooks/Card'
+import itemTypes from './Card'
 
 const style = {
     border: '1px dashed gray',
@@ -12,15 +12,15 @@ const style = {
     float: 'left',
   };
   
-const Todo = ({todo}) => {
-    const {title,description,deadline,priority} = todo
+const Tasks = ({todo}) => {
+    const {title,description,deadline,priority,status} = todo
     const [{isDragging}, drag] = useDrag({
         type: itemTypes.CARD,
         item:{todo},
         end:(item, monitor) => {
             const dropResult = monitor.getDropResult();
             if (item && dropResult) {
-              alert(`You dropped ${item.name} into ${dropResult.name}!`);
+              alert(`You dropped ${title} into ${dropResult.name}!`);
             }
         },
         collect: (monitor) => ({
@@ -28,7 +28,7 @@ const Todo = ({todo}) => {
             handlerId: monitor.getHandlerId(),
           }),
     })
-    const opacity = isDragging ? 1 : 1;
+    const opacity = isDragging ? 0.4 : 1;
   return (
     <div>
         
@@ -37,14 +37,15 @@ const Todo = ({todo}) => {
         <p>{description}</p>
         <p>{priority}</p>
         <p>{deadline}</p>
+        <p>{status}</p>
       </div>
     </div>
   )
 }
 
-Todo.propTypes = {
+Tasks.propTypes = {
     todo: PropTypes.object
 
 }
 
-export default Todo
+export default Tasks
