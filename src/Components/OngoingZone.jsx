@@ -15,13 +15,12 @@ const OngoingZone = ({ status }) => {
             const updatedItem = { title: item.todo.title, priority: item.todo.priority, deadline: item.todo.deadline, status: status }
 
 
-            await axios.put(`http://localhost:5000/todo/${item.todo._id}`, updatedItem)
+            await axios.patch(`http://localhost:5000/todo/${item.todo._id}`, updatedItem)
                 .then(res => {
                     console.log(res.data)
                 }),
-                refetch()
-            console.log(item.todo._id),
-                ({ name: 'Ongoing' })
+                refetch(),
+                ({ name: status })
         }
         ,
         collect: (monitor) => ({
@@ -37,7 +36,7 @@ const OngoingZone = ({ status }) => {
         backgroundColor = 'darkkhaki'
     }
     return (
-        <div ref={drop} style={{ backgroundColor }} className="border-r-2  border-gray-300 h-screen">
+        <div ref={drop} style={{ backgroundColor }} className="border-r-2  border-gray-300 h-full">
             <h2 className="text-2xl text-center font-bold">On going</h2>
             {
                 ongoings.map(ongoing => <Tasks key={ongoing._id} todo={ongoing}></Tasks>)
