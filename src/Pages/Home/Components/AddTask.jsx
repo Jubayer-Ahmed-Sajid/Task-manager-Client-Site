@@ -3,9 +3,10 @@ import { Controller, useForm } from "react-hook-form";
 import Select from 'react-select'
 import useAuth from "../../../Components/hooks/useAuth";
 import useTasks from "../../../Components/hooks/useTasks";
+import Swal from "sweetalert2";
 
 const AddTask = () => {
-    const { control, register, handleSubmit } = useForm()
+    const { control, register, handleSubmit,reset } = useForm()
     const [,refetch] = useTasks()
     const {user} = useAuth()
     const onSubmit = (data) =>{
@@ -19,19 +20,29 @@ const AddTask = () => {
         }
         axios.post('http://localhost:5000/todo',task)
         .then(res => {
-            console.log(res.data)
+            if(res.data.insertedId){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  refetch()
+                  reset();
+                  
+            }
         })
-        refetch()
     } 
 
 
     return (
         <div className="py-2 ">
 
-            <button className="btn bg-[#FFA07A] text-white border-none" onClick={() => document.getElementById('my_modal_1').showModal()}>Add Task</button>
+            <button className="btn bg-[#FFA07A]  border-none" onClick={() => document.getElementById('my_modal_1').showModal()}>Add Task</button>
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form className="text-black" onSubmit={handleSubmit(onSubmit)}>
                         <br />
                         <input {...register("title", { required: true, maxLength: 20 })} placeholder="Task Name" className="py-2 border-transparent px-2 " autoFocus />
                         <br />
