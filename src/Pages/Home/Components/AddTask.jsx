@@ -10,10 +10,10 @@ const AddTask = () => {
     const {user} = useAuth()
     const onSubmit = (data) =>{
         const task = {
-            title: data.taskName,
-            description:data.Description,
+            title: data.title,
+            description:data.description,
             priority: data.priority.value,
-            deadLine: data.deadline,
+            deadLine: data.deadLine,
             status:'todo',
             email: user.email,
         }
@@ -33,10 +33,10 @@ const AddTask = () => {
                 <div className="modal-box">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <br />
-                        <input {...register("taskName", { required: true, maxLength: 20 })} placeholder="Task Name" className="py-2 border-transparent px-2 " autoFocus />
+                        <input {...register("title", { required: true, maxLength: 20 })} placeholder="Task Name" className="py-2 border-transparent px-2 " autoFocus />
                         <br />
                         <br />
-                        <textarea {...register("Description", { required: true })} placeholder="Description" />
+                        <textarea {...register("description", { required: true })} placeholder="Description" />
                         <br />
                         <label htmlFor="priority">Priority</label>
                         <br />
@@ -55,11 +55,11 @@ const AddTask = () => {
                             )}
                         />
                         <br />
-                        <label htmlFor="deadline">Deadline</label>
+                        <label htmlFor="deadLine">Deadline</label>
                         <br />
-                        <input type="date" {...register("deadline",{required:true})}/>
+                        <input type="date" {...register("deadLine",{required:true})}/>
                         <br />
-                        <input type="submit" />
+                        <input type="submit" className="text-red-400 btn mt-8" value='Add to Task'/>
                     </form>
                     <div className="modal-action">
                         <form method="dialog">

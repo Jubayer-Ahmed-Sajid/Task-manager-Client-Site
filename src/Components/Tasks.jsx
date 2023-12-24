@@ -6,11 +6,15 @@ import { FaCalendar, FaEdit, FaRegCircle } from 'react-icons/fa';
 import { MdDelete } from "react-icons/md";
 import useAxios from './hooks/useAxios';
 import useTasks from './hooks/useTasks';
+import { Link } from 'react-router-dom';
+
 
 const Tasks = ({ todo }) => {
   const axiosPublic = useAxios()
-  const [,refetch] = useTasks()
-  const { title, description, deadLine, priority, status } = todo
+  const [, refetch] = useTasks()
+  const { title, description, deadLine, priority } = todo
+
+  // Making tasks draggable
   const [{ isDragging }, drag] = useDrag({
     type: itemTypes.CARD,
     item: { todo },
@@ -25,6 +29,8 @@ const Tasks = ({ todo }) => {
       handlerId: monitor.getHandlerId(),
     }),
   })
+
+  // Deleting task
   const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -34,24 +40,29 @@ const Tasks = ({ todo }) => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
-    }).then(async(result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         await axiosPublic.delete(`/todo/${todo._id}`)
-        .then(res =>{
-          console.log(res.data)
-          if(res.data.deletedCount){
+          .then(res => {
+            console.log(res.data)
+            if (res.data.deletedCount) {
 
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            });
-            refetch()
-          }
-        })
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+              refetch()
+            }
+          })
       }
     });
   }
+
+  // Updating Task
+
+
+  
   const opacity = isDragging ? 0.4 : 1;
   return (
 
@@ -68,11 +79,15 @@ const Tasks = ({ todo }) => {
         <p className='text-[#666666]'>{description}</p>
         <p className='flex items-center gap-4 justify-center'><FaCalendar></FaCalendar>{deadLine}</p>
       </div>
+
+      {/* Update and delete task */}
       <div>
         <div className='flex gap-4 text-xl'>
-          <button>
-            <FaEdit></FaEdit>
-          </button>
+          {/* Update task */}
+         <Link to= {`/tasks/${todo._id}`} className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}><FaEdit></FaEdit></Link>
+
+          {/* Delete Task */}
+
           <button onClick={handleDelete}>
 
             <MdDelete></MdDelete>
@@ -81,7 +96,7 @@ const Tasks = ({ todo }) => {
 
       </div>
 
-    </div>
+    </div >
   )
 }
 
