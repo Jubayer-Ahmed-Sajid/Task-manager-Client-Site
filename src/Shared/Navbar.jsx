@@ -23,7 +23,7 @@ const Navbar = () => {
             <NavLink to='/todos'>Todo</NavLink>
         </li>
         <li>
-            <NavLink to='/Done'>Completed</NavLink>
+            <NavLink to='/completed'>Completed</NavLink>
         </li>
         {user ? <button className="hover:bg-slate-200 px-4 rounded-lg" onClick={handleLogout}>Logout</button> :<>
         <li>

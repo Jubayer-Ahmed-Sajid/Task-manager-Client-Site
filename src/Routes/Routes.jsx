@@ -6,6 +6,7 @@ import Home from "../Pages/Home/Home";
 import UpdateTask from "../Pages/Home/Components/UpdateTask";
 import PrivateRoute from "./PrivateRoute";
 import Todos from "../Pages/Todos/Todos";
+import Completed from "../Pages/Completed/Completed";
 
 export const router = createBrowserRouter([
     {
@@ -22,9 +23,13 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute><Home></Home></PrivateRoute>
             },
             {
-                path:'/todos',
+                path:'todos',
                 element:<PrivateRoute><Todos></Todos></PrivateRoute>
 
+            },
+            {
+                path:'completed',
+                element:<PrivateRoute><Completed></Completed></PrivateRoute>
             },
             {
                 path:'login',
