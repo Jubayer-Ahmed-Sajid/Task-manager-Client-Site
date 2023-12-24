@@ -16,7 +16,7 @@ const AddTask = () => {
             priority: data.priority.value,
             deadLine: data.deadLine,
             status:'todo',
-            email: user.email,
+            email: user?.email,
         }
         axios.post('https://task-manager-server-site-eok54iegp-jubayer-ahmed-sajid.vercel.app/todo',task)
         .then(res => {
