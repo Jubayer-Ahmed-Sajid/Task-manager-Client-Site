@@ -7,6 +7,7 @@ import UpdateTask from "../Pages/Home/Components/UpdateTask";
 import PrivateRoute from "./PrivateRoute";
 import Todos from "../Pages/Todos/Todos";
 import Completed from "../Pages/Completed/Completed";
+import Welcome from "../Pages/Welcome/Welcome";
 
 export const router = createBrowserRouter([
     {
@@ -14,12 +15,16 @@ export const router = createBrowserRouter([
         element:<Root></Root>,
         children:[
             {
+                path:'/',
+                element:<Welcome></Welcome>
+            },
+            {
                 path:'registration',
                 element:<Registration></Registration>
 
             },
             {
-                path:'/',
+                path:'/dashboard',
                 element:<PrivateRoute><Home></Home></PrivateRoute>
             },
             {

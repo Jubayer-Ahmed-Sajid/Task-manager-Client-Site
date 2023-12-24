@@ -2,6 +2,7 @@ import { MdDelete, MdDescription } from "react-icons/md";
 import useTasks from "../../Components/hooks/useTasks";
 import useAxios from "../../Components/hooks/useAxios";
 import Swal from "sweetalert2";
+import { FaCalendar, FaRegCircle } from "react-icons/fa";
 
 const Completed = () => {
     const [tasks,refetch] = useTasks()
