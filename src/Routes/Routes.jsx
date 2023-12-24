@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
             {
                 path:'tasks/:id',
                 element:<PrivateRoute><UpdateTask></UpdateTask></PrivateRoute>,
-                loader:({params})=> fetch(`http://localhost:5000/todo/${params.id}`)
+                loader:({params})=> fetch(`https://task-manager-server-site-eok54iegp-jubayer-ahmed-sajid.vercel.app/todo/${params.id}`)
             }
         ]
 

@@ -7,7 +7,7 @@ const useTasks = () => {
     const {data: tasks=[],refetch} = useQuery({
          queryKey:['tasks'],
         queryFn:async()=>{
-            const response = await axios.get(`http://localhost:5000/todo?email=${user.email}`)
+            const response = await axios.get(`https://task-manager-server-site-eok54iegp-jubayer-ahmed-sajid.vercel.app/todo?email=${user.email}`)
             return response.data
 
         }

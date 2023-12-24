@@ -33,7 +33,7 @@ const UpdateTask = () => {
             status: todo.status
 
         }
-        axiosPublic.patch(`http://localhost:5000/todo/${todo._id}`, updatedTask)
+        axiosPublic.patch(`https://task-manager-server-site-eok54iegp-jubayer-ahmed-sajid.vercel.app/todo/${todo._id}`, updatedTask)
             .then(res => {
                 if (res.data.modifiedCount) {
                     Swal.fire({

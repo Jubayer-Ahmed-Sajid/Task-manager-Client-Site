@@ -21,7 +21,7 @@ const TodoZone = ({status}) => {
         status: status }
 
 
-      await axios.patch(`http://localhost:5000/todo/${item.todo._id}`, updatedItem)
+      await axios.patch(`https://task-manager-server-site-eok54iegp-jubayer-ahmed-sajid.vercel.app/todo/${item.todo._id}`, updatedItem)
         .then(res => {
           console.log(res.data)
         }),

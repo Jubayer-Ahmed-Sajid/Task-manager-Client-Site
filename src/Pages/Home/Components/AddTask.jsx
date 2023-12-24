@@ -18,7 +18,7 @@ const AddTask = () => {
             status:'todo',
             email: user.email,
         }
-        axios.post('http://localhost:5000/todo',task)
+        axios.post('https://task-manager-server-site-eok54iegp-jubayer-ahmed-sajid.vercel.app/todo',task)
         .then(res => {
             if(res.data.insertedId){
                 Swal.fire({

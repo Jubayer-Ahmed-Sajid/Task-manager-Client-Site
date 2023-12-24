@@ -20,7 +20,7 @@ const CompletedZone = ({ status }) => {
                 description: item.todo.description,
                 status: status
             }
-            await axios.patch(`http://localhost:5000/todo/${item.todo._id}`, updatedTask)
+            await axios.patch(`https://task-manager-server-site-eok54iegp-jubayer-ahmed-sajid.vercel.app/todo/${item.todo._id}`, updatedTask)
                 .then(res => {
                     console.log(res.data)
                 })
