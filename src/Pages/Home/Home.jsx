@@ -20,12 +20,12 @@ const Home = () => {
                     <div  className="items user-segment-card overlay w-1/2 mx-auto">
                         <h3 data-aos="fade-left" className="text-4xl text-center font-bold">This Task Manager is specially for <br /> <span className="text-red-400 py-2">Developers</span></h3>
                         <p data-aos="fade-right" className="text-[white] text-center">Efficiently manage coding tasks and project deadlines. <br /> Efortlessly move tasks from todo to ongoing or from ongoing to completed and around.</p>
-                    <AddTask data-aos="zoo-in"></AddTask>
+                    <AddTask ></AddTask>
                     </div>
 
                 </div>
             </section>
-      <div className="grid gap-2 lg:grid-cols-3 mx-4 text-center">
+      <div  className="grid  gap-2 lg:grid-cols-3 mx-4 text-center">
         <TodoZone status={'todo'}></TodoZone>
         <OngoingZone status={'ongoing'}></OngoingZone>
         <CompletedZone status={'completed'}></CompletedZone>

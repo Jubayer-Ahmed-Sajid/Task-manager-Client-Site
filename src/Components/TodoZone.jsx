@@ -4,7 +4,8 @@ import Tasks from './Tasks'
 import axios from 'axios'
 import itemTypes from './Card'
 import { useDrop } from 'react-dnd'
-
+import Aos from 'aos'
+import 'aos/dist/aos.css';
 const TodoZone = ({status}) => {
   const [tasks, refetch] = useTasks()
   console.log(tasks)
@@ -41,8 +42,11 @@ const TodoZone = ({status}) => {
   } else if (canDrop) {
     backgroundColor = 'darkkhaki'
   }
+  Aos.init({
+    duration:1500,
+  })
   return (
-    <div ref={drop} style={{ backgroundColor }} className="border-r-2 w-full shadow-2xl rounded-lg border-gray-300 h-full">
+    <div data-aos="zoom-in" ref={drop} style={{ backgroundColor }} className="border-r-2 w-full shadow-2xl rounded-lg border-gray-300 h-full">
       <h2 className='text-center text-2xl font-bold  py-2'>Todo</h2>
       {
         todos.map(todo => <Tasks key={todo._id} todo={todo}></Tasks>)

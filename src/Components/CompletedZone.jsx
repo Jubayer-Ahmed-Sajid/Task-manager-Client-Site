@@ -4,7 +4,8 @@ import useTasks from "./hooks/useTasks";
 import itemTypes from "./Card";
 import axios from "axios";
 import PropTypes from 'prop-types'
-
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 const CompletedZone = ({ status }) => {
     const [tasks, refetch] = useTasks()
@@ -41,8 +42,11 @@ const CompletedZone = ({ status }) => {
     } else if (canDrop) {
         backgroundColor = 'darkkhaki'
     }
+    Aos.init({
+        duration:1500,
+    })
     return (
-        <div ref={drop} style={{ backgroundColor }} className="border-r-2 w-full shadow-2xl rounded-lg border-gray-300 h-full">
+        <div data-aos="zoom-in" ref={drop} style={{ backgroundColor }} className="border-r-2 w-full shadow-2xl rounded-lg border-gray-300 h-full">
             <h2 className="text-2xl text-center font-bold py-2">Completed</h2>
             {
                 completedTasks.map(completed => <Tasks key={completed._id} todo={completed}></Tasks>)

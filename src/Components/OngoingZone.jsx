@@ -4,7 +4,8 @@ import axios from 'axios'
 import useTasks from './hooks/useTasks'
 import Tasks from './Tasks'
 import PropTypes from 'prop-types'
-
+import Aos from 'aos'
+import 'aos/dist/aos.css';
 
 const OngoingZone = ({ status }) => {
     const [tasks, refetch] = useTasks()
@@ -41,8 +42,11 @@ const OngoingZone = ({ status }) => {
     } else if (canDrop) {
         backgroundColor = 'darkkhaki'
     }
+    Aos.init({
+        duration:1500,
+    })
     return (
-        <div ref={drop} style={{ backgroundColor }}className="border-r-2 w-full shadow-2xl rounded-lg border-gray-300 h-full">
+        <div data-aos="zoom-in" ref={drop} style={{ backgroundColor }}className="border-r-2 w-full shadow-2xl rounded-lg border-gray-300 h-full">
             <h2 className="text-2xl text-center font-bold py-2">On going</h2>
             {
                 ongoings.map(ongoing => <Tasks key={ongoing._id} todo={ongoing}></Tasks>)
