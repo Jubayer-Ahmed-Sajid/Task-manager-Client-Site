@@ -38,17 +38,16 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unSubscribe = () => {
-            onAuthStateChanged(auth, (currentUser) => {
-                setUser(currentUser)
-                setLoading(false)
-            })
-        }
+        const unSubscribe = onAuthStateChanged((auth), currentUser => {
+            setUser(currentUser);
+            setLoading(false);
+        });
+    
+       
         return () => {
-             unSubscribe();
-
-        }
-    }, [])
+            unSubscribe();
+        };
+    }, []);
     
     const authInfo = { user, loading, CreateUser,Login, LoginWithGoogle, LoginWithGitHub, LogOut,updateUser }
 
