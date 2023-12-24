@@ -12,7 +12,13 @@ const OngoingZone = ({ status }) => {
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
         accept: itemTypes.CARD,
         drop: async (item,) => {
-            const updatedItem = { title: item.todo.title, priority: item.todo.priority, deadline: item.todo.deadline, status: status }
+            const updatedItem = {
+                title: item.todo.title,
+                priority: item.todo.priority,
+                deadLine: item.todo.deadLine,
+                description: item.todo.description,
+                status: status
+            }
 
 
             await axios.patch(`http://localhost:5000/todo/${item.todo._id}`, updatedItem)
@@ -29,15 +35,15 @@ const OngoingZone = ({ status }) => {
         }),
     }))
     const isActive = canDrop && isOver
-    let backgroundColor = '#06af98'
+    let backgroundColor = '#32CD32'
     if (isActive) {
         backgroundColor = '#d9f9a5'
     } else if (canDrop) {
         backgroundColor = 'darkkhaki'
     }
     return (
-        <div ref={drop} style={{ backgroundColor }} className="border-r-2  border-gray-300 h-full">
-            <h2 className="text-2xl text-center font-bold">On going</h2>
+        <div ref={drop} style={{ backgroundColor }}className="border-r-2 w-full shadow-2xl rounded-lg border-gray-300 h-full">
+            <h2 className="text-2xl text-center font-bold py-2">On going</h2>
             {
                 ongoings.map(ongoing => <Tasks key={ongoing._id} todo={ongoing}></Tasks>)
             }
@@ -47,6 +53,6 @@ const OngoingZone = ({ status }) => {
 }
 OngoingZone.propTypes = {
     status: PropTypes.string,
-  };
+};
 
 export default OngoingZone

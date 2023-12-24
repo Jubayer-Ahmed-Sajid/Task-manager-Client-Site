@@ -3,7 +3,7 @@ import { useDrag } from 'react-dnd'
 import itemTypes from './Card'
 import Swal from 'sweetalert2';
 import { FaCalendar, FaEdit, FaRegCircle } from 'react-icons/fa';
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdDescription } from "react-icons/md";
 import useAxios from './hooks/useAxios';
 import useTasks from './hooks/useTasks';
 import { Link } from 'react-router-dom';
@@ -67,17 +67,17 @@ const Tasks = ({ todo }) => {
   return (
 
     <div ref={drag} style={{ opacity }} className='border-t flex justify-around border-gray-300 py-8 mx-4 w-full my-4'>
-      <div>
+      <div className='space-y-2 w-1/2' >
 
-        <div className='flex items-center justify-center gap-4'>
-          <button className={`${priority === 'low' ? 'text-green' : priority === 'moderate' ? 'text-yellow-400' : 'text-red-600'} hover:bg-red-500 rounded-full`}>
+        <div className='flex items-center justify-start gap-4'>
+          <button className={` ${priority === 'low' ? 'text-green' : priority === 'moderate' ? 'text-yellow-400' : 'text-red-600'} hover:bg-red-500 rounded-full`}>
 
             <FaRegCircle></FaRegCircle>
           </button>
-          <p className='text-white'>{title}</p>
+          <p className='text-[#333333]'>{title}</p>
         </div>
-        <p className='text-[#666666]'>{description}</p>
-        <p className='flex items-center gap-4 justify-center'><FaCalendar></FaCalendar>{deadLine}</p>
+        <p className='text-[#666666] flex gap-4 items-center justify-start'><MdDescription></MdDescription> {description}</p>
+        <p className='flex items-center gap-4 justify-start'><FaCalendar></FaCalendar>{deadLine}</p>
       </div>
 
       {/* Update and delete task */}

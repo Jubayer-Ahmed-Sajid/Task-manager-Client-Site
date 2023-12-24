@@ -12,7 +12,12 @@ const TodoZone = ({status}) => {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: itemTypes.CARD,
     drop: async (item,) => {
-      const updatedItem = { title: item.todo.title, priority: item.todo.priority, deadline: item.todo.deadline, status: status }
+      const updatedItem = { 
+        title: item.todo.title, 
+        priority: item.todo.priority, 
+        deadline: item.todo.deadline,
+        description: item.todo.description,
+        status: status }
 
 
       await axios.patch(`http://localhost:5000/todo/${item.todo._id}`, updatedItem)
@@ -30,15 +35,15 @@ const TodoZone = ({status}) => {
     }),
   }))
   const isActive = canDrop && isOver
-  let backgroundColor = '#06af98'
+  let backgroundColor = ' #FFA07A'
   if (isActive) {
     backgroundColor = '#d9f9a5'
   } else if (canDrop) {
     backgroundColor = 'darkkhaki'
   }
   return (
-    <div ref={drop} style={{ backgroundColor }} className="border-r-2 w-full border-gray-300 h-full">
-      <h2 className='text-center text-2xl font-bold mb-3'>Todo</h2>
+    <div ref={drop} style={{ backgroundColor }} className="border-r-2 w-full shadow-2xl rounded-lg border-gray-300 h-full">
+      <h2 className='text-center text-2xl font-bold  py-2'>Todo</h2>
       {
         todos.map(todo => <Tasks key={todo._id} todo={todo}></Tasks>)
       }

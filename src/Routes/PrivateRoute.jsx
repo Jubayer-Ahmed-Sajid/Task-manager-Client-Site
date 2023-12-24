@@ -1,4 +1,4 @@
-import { Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import useAuth from "../Components/hooks/useAuth";
 import PropTypes from 'prop-types'
 
@@ -18,11 +18,11 @@ const PrivateRoute = ({ children }) => {
         )
     }
     else {
-         return <Navigate to='/login' replace></Navigate>
+        return <Navigate to='/login' replace></Navigate>
     }
 
 };
-PrivateRoute.propTypes ={
+PrivateRoute.propTypes = {
     children: PropTypes.node
 }
 
