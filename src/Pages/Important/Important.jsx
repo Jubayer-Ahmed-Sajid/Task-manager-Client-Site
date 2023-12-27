@@ -4,9 +4,9 @@ import useAxios from "../../Components/hooks/useAxios";
 import Swal from "sweetalert2";
 import { FaCalendar, FaRegCircle } from "react-icons/fa";
 
-const Completed = () => {
+const Important = () => {
     const [tasks,refetch] = useTasks()
-    const completedTasks = tasks.filter(completed => completed.status === 'completed')
+    const importantTasks = tasks.filter(task => task.priority === 'high')
     const axiosPublic = useAxios()
     const handleDelete = (id) => {
         Swal.fire({
@@ -38,31 +38,31 @@ const Completed = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold py-4 text-center">Task Done</h2>
+            <h2 className="text-2xl font-bold py-4 text-center">Most Important</h2>
             {
-                completedTasks.map(completed=>  <div key={completed._id} className='border-t flex justify-around border-gray-300 py-8 mx-4 w-full my-4'>
+                importantTasks.map(important=>  <div key={important._id} className='border-t flex justify-around border-gray-300 py-8 mx-4 w-full my-4'>
                 <div className='space-y-2 w-1/2' >
     
                     <div className='flex items-center justify-start gap-4'>
-                        <button className={` ${completed.priority === 'low' ? 'text-white' : completed.priority === 'moderate' ? 'text-yellow-400' : 'text-red-600'} hover:bg-red-500 rounded-full`}>
+                        <button className={` ${important.priority === 'low' ? 'text-white' : important.priority === 'moderate' ? 'text-yellow-400' : 'text-red-600'} hover:bg-red-500 rounded-full`}>
     
                             <FaRegCircle></FaRegCircle>
                         </button>
-                        <p className='text-[#333333]'>{completed.title}</p>
+                        <p className='text-[#333333]'>{important.title}</p>
                     </div>
-                    <p className='text-[#666666] flex gap-4 items-center justify-start'><MdDescription></MdDescription> {completed.description}</p>
-                    <p className='flex items-center gap-4 justify-start'><FaCalendar></FaCalendar>{completed.deadLine}</p>
+                    <p className='text-[#666666] flex gap-4 items-center justify-start'><MdDescription></MdDescription> {important.description}</p>
+                    <p className='flex items-center gap-4 justify-start'><FaCalendar></FaCalendar>{important.deadLine}</p>
                 </div>
     
-                {/* Update and delete task */}
+                {/*delete task */}
                 <div>
                     <div className='flex gap-4 text-xl'>
-                        {/* Update task */}
+                       
                        
     
                         {/* Delete Task */}
     
-                        <button className="btn text-xl " onClick={()=>handleDelete(completed._id)}>
+                        <button className="btn text-xl " onClick={()=>handleDelete(important._id)}>
     
                             <MdDelete></MdDelete>
                         </button>
@@ -77,4 +77,4 @@ const Completed = () => {
     );
 };
 
-export default Completed;
+export default Important;

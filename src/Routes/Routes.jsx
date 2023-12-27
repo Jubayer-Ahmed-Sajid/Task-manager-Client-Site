@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import Todos from "../Pages/Todos/Todos";
 import Completed from "../Pages/Completed/Completed";
 import Welcome from "../Pages/Welcome/Welcome";
+import Important from "../Pages/Important/Important";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path:'completed',
                 element:<PrivateRoute><Completed></Completed></PrivateRoute>
+            },
+            {
+                path:'most-important',
+                element:<PrivateRoute><Important></Important></PrivateRoute>
             },
             {
                 path:'login',
