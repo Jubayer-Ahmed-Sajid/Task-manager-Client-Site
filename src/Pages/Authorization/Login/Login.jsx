@@ -91,7 +91,7 @@ const Login = () => {
             <h2 className='text-center text-xl lg:text-4xl text-primary my-3 lg:my-6'>Please Sign In</h2>
             <form onSubmit={formik.handleSubmit} className='mt-12 p-6 space-y-2 mx-auto w-full'>
 
-                <div className='lg:1/2  mx-auto space-y-2'>
+                <div className='lg:w-1/2  mx-auto space-y-2'>
                     <label htmlFor="email"> Email Address </label>
                     <br />
 

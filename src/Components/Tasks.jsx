@@ -78,6 +78,7 @@ const Tasks = ({ todo }) => {
         </div>
         <p className='text-[#666666] flex gap-4 items-center justify-start'><MdDescription></MdDescription> {description}</p>
         <p className='flex items-center gap-4 justify-start'><FaCalendar></FaCalendar>{deadLine}</p>
+        <p >Priority: {priority}</p>
       </div>
 
       {/* Update and delete task */}
