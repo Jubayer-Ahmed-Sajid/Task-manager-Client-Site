@@ -161,10 +161,10 @@ const Registration = () => {
     }
     return (
         <div className="registration-container flex py-8 justify-center items-center">
-            <div className='w-1/2 rounded-lg py-8 bg-slate-400'>
-                <h3 className='text-3xl text-center font-bold text-primary'>Welcome to Task Expert</h3>
+            <div className='lg:w-1/2 px-4 rounded-lg py-4 lg:py-8 bg-slate-400'>
+                <h3 className='text-xl lg:text-3xl text-center font-bold text-primary'>Welcome to Task Expert</h3>
                 <form onSubmit={formik.handleSubmit} className='mt-12  space-y-2  w-full '>
-                    <div className='mx-auto w-2/4 space-y-2'>
+                    <div className='mx-auto lg:w-2/4 space-y-2'>
                         <label htmlFor="fullName">Full Name</label>
                         <br />
                         <input
@@ -182,7 +182,7 @@ const Registration = () => {
                             <p className='text-red-400 text-md'>{formik.errors.fullName}</p>
                         ) : null}
                     </div>
-                    <div className='w-2/4 mx-auto space-y-2'>
+                    <div className='lg:w-2/4 mx-auto space-y-2'>
                         <label htmlFor="email"> Email Address </label>
                         <br />
 
@@ -201,7 +201,7 @@ const Registration = () => {
                         ) : null}
                     </div>
 
-                    <div className="w-2/4 mx-auto space-y-2">
+                    <div className="lg:w-2/4 mx-auto space-y-2">
                         <label >Image</label>
                         <br />
 
@@ -217,7 +217,7 @@ const Registration = () => {
                         />
                     </div>
                     <br />
-                    <div className="space-y-2 mx-auto w-2/4">
+                    <div className="space-y-2 mx-auto lg:w-2/4">
                         <label htmlFor="password">Password</label>
                         <br />
                         <input
@@ -236,31 +236,31 @@ const Registration = () => {
                     </div>
 
                     <br />
-                    <div className='w-1/2 mx-auto'>
+                    <div className='lg:w-1/2 mx-auto'>
 
                         <button className='w-full btn py-3 rounded-lg  px-3 bg-yellow-600 text-white' type="submit">Register</button>
                     </div>
-                    <div className='flex w-1/2 mx-auto items-center gap-2'>
-                        <div className=' w-5/12'>
+                    <div className='flex lg:w-1/2 mx-auto items-center gap-2'>
+                        <div className='w-full lg:w-5/12'>
                             <hr />
                         </div>
                         <h2 className='text-green-400  font-bold'>or</h2>
-                        <div className=' w-5/12'>
+                        <div className='w-full lg:w-5/12'>
                             <hr />
                         </div>
                     </div>
                 </form>
-                    <div className='w-1/2 mx-auto'>
+                    <div className='lg:w-1/2 mx-auto'>
                         <button onClick={handleGoogleSigin} className='btn mb-4 text-white rounded-lg text-center w-full bg-yellow-600 py-3'>
                             <h2 className='flex justify-center items-center gap-4'>Login by Google  <FaGoogle></FaGoogle></h2>
                         </button>
                     </div>
-                    <div className='w-1/2 mx-auto'>
+                    <div className='lg:w-1/2 mx-auto'>
                         <button onClick={handleGitHubSignin} className='btn text-white rounded-lg text-center w-full bg-yellow-600 py-3'>
                             <h2 className='flex  justify-center items-center gap-4'>Login by Github  <FaGithub></FaGithub></h2>
                         </button>
                     </div>
-                    <div className='my-6 text-white px-4 w-1/2 mx-auto'>
+                    <div className='my-6 text-white px-4 lg:w-1/2 mx-auto'>
                         <h2>Already have an account ?<Link className='text-primary ml-2' to='/login'>Login Now</Link></h2>
                     </div>
             </div>

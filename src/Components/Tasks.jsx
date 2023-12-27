@@ -13,7 +13,7 @@ const Tasks = ({ todo }) => {
   const axiosPublic = useAxios()
   const [, refetch] = useTasks()
   const { title, description, deadLine, priority } = todo
-
+  
   // Making tasks draggable
   const [{ isDragging }, drag] = useDrag({
     type: itemTypes.CARD,
@@ -66,7 +66,7 @@ const Tasks = ({ todo }) => {
   const opacity = isDragging ? 0.4 : 1;
   return (
 
-    <div ref={drag} style={{ opacity }} className='border-t flex justify-around border-gray-300 py-8 mx-4 w-full my-4'>
+    <div style={{ opacity }} ref={drag}   className='border-t flex justify-around border-gray-300 py-8 mx-4 w-full my-4'>
       <div className='space-y-2 w-1/2' >
 
         <div className='flex items-center justify-start gap-4'>

@@ -37,9 +37,10 @@ const AddTask = () => {
 
 
     return (
-        <div className="py-2 ">
+        <div>
 
-            <button className="btn bg-[#FFA07A]  border-none" onClick={() => document.getElementById('my_modal_1').showModal()}>Add Task</button>
+            <button className=" border-none" onClick={() => document.getElementById('my_modal_1').showModal()}> 
+           Add Task</button>
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
                     <form className="text-black" onSubmit={handleSubmit(onSubmit)}>
